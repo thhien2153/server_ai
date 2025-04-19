@@ -1,12 +1,17 @@
 # Dockerfile
+FROM python:3.10-slim
 
-FROM python:3.10
-
+# Set working directory inside container
 WORKDIR /app
 
+# Copy requirements file
 COPY requirements.txt .
+
+# Install dependencies
 RUN pip install --no-cache-dir -r requirements.txt
 
+# Copy rest of the code
 COPY . .
 
-CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8080"]
+# Default command to run
+CMD ["python", "app.py"]  # Nếu bạn có file main là app.py hoặc sửa lại tên file tương ứng
